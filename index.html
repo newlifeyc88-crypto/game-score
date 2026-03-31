@@ -33,44 +33,13 @@ th {
     background: #e0e0e0;
 }
 
-input {
-    text-align: center;
-}
-
-input.team {
-    width: 80px;
-    border: 1px solid #bbb;
-    background: #f9f9f9;
-}
-
-input.score {
-    width: 70px;
-    border: 1px solid #bbb;
-    background: #f9f9f9;
-}
-
-input:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+.team {
+    font-weight: bold;
 }
 
 .total {
     background: #e0e0e0;
     font-weight: bold;
-}
-
-#adminPanel {
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-#adminPanel button {
-    padding: 6px 12px;
-}
-
-#status {
-    margin-left: 10px;
-    color: #666;
 }
 </style>
 </head>
@@ -79,102 +48,70 @@ input:disabled {
 
 <h1>試合点数</h1>
 
-<div id="adminPanel">
-    <button onclick="unlock()">🔓 管理者モード</button>
-    <span id="status">（閲覧専用）</span>
-</div>
-
 <table>
     
         
             <th>　
-            <th><input class="team" value="A"></th>
-            <th><input class="team" value="B"></th>
-            <th><input class="team" value="C"></th>
-            <th><input class="team" value="E"></th>
-            <th><input class="team" value="F"></th>
-            <th><input class="team" value="G"></th>
+            <th class="team">A
+            <th class="team">B
+            <th class="team">C
+            <th class="team">D
+            <th class="team">E
+            <th class="team">F
         
-        
+    
+    
         <tr>
             <th>ゲーム1</th>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
         
         
         <tr>
             <th>ゲーム2</th>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
         
         
         <tr>
             <th>ゲーム3</th>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
         
         
         <tr>
             <th>ゲーム4</th>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
-            <td><input class="score" disabled></td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
         
         
         <tr class="total">
             <th>合計</th>
-            <td id="tA">0</td>
-            <td id="tB">0</td>
-            <td id="tC">0</td>
-            <td id="tE">0</td>
-            <td id="tF">0</td>
-            <td id="tG">0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
         
     
 </table>
 
-<script>
-const PASSWORD = "0000";
-
-function unlock() {
-    const pw = prompt("管理者パスワードを入力してください");
-    if (pw === PASSWORD) {
-        document.querySelectorAll(".score").forEach(i => i.disabled = false);
-        document.getElementById("status").innerText = "✅ 編集可能";
-    } else {
-        alert("パスワードが違います");
-    }
-}
-
-function calc() {
-    ["A","B","C","E","F","G"].forEach((_, i) => {
-        let sum = 0;
-        document.querySelectorAll("tbody tr:not(.total) td:nth-child("+(i+2)+") input.score")
-            .forEach(input => sum += Number(input.value) || 0);
-        document.getElementById("t" + ["A","B","C","E","F","G"][i]).innerText = sum;
-    });
-}
-
-document.querySelectorAll(".score").forEach(i => {
-    i.addEventListener("input", calc);
-});
-</script>
-
 </body>
 </html>
-
